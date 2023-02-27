@@ -37,6 +37,22 @@ class ViewController: UIViewController {
         return downButton
     }()
     
+    var view1: UIView! = {
+        var view1 = UIView()
+        view1.backgroundColor = .gray
+        view1.translatesAutoresizingMaskIntoConstraints = false
+        view1.alpha = 1
+        return view1
+    }()
+    
+    var view2: UIView! = {
+        var view2 = UIView()
+        view2.backgroundColor = .systemBlue
+        view2.translatesAutoresizingMaskIntoConstraints = false
+        view2.alpha = 1
+        return view2
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,7 +62,10 @@ class ViewController: UIViewController {
 //        }
         threeView[0].alpha = 0.3
         view.addSubview(downButton)
+        view.addSubview(view1)
+        view.addSubview(view2)
         addCons()
+        startButton.layer.cornerRadius = 10
     }
     
     func addCons() {
@@ -59,10 +78,30 @@ class ViewController: UIViewController {
         
         cons.append(downButton.widthAnchor.constraint(equalToConstant: 100)) /// WIDTH OF BUTTON
         cons.append(downButton.heightAnchor.constraint(equalToConstant: 50)) /// HEIGHT BUTTON
+        
+        /// Setting View (GRAY)
+        
+        cons.append(view1.widthAnchor.constraint(equalToConstant: 200))
+        cons.append(view1.heightAnchor.constraint(equalToConstant: 150))
+
+        cons.append(view1.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: -100))
+        
+        cons.append(view1.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: 200))
+        
+        /// SETTING VIEW (BLUE)
+        
+        cons.append(view2.widthAnchor.constraint(equalToConstant: 200))
+        cons.append(view2.heightAnchor.constraint(equalToConstant: 150))
+
+        cons.append(view2.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 25))
+        
+        cons.append(view2.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -200))
+        
         /// Activate
         NSLayoutConstraint.activate(cons)
-    }
 
+    }
+    
     @IBAction func pressedButton(_ sender: UIButton) {
         switch threeView[0] {
         case threeView[0]:
